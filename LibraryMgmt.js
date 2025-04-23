@@ -21,10 +21,23 @@ class LibraryItem{
 // Child Class 1
 class Book extends LibraryItem
 {
-    constructor(genre, author)
+    constructor(id,title,isAvailable,genre, author)
     {
+        super(id,title,isAvailable);
         this.genre = genre;
         this.author = author;
+    }
+
+    fetchBookList()
+    {
+        let bookList = [
+            { genre: 'Romance',title:'Pride and Prejudice' ,author: 'Jane Austen'},
+            {genre: 'Mystery',title:'The Locked Room by Edgar',author: 'Allan Poe'},
+            {genre:  'Fantasy',title:'The Hobbit', author:'J.R.R. Tolkien'},
+            {genre: 'Science Fiction',title: 'Dune',author:'Frank Herbert'},
+                     
+       ]
+       return bookList;
     }
 }
 
@@ -32,33 +45,36 @@ class Book extends LibraryItem
 class DVD extends LibraryItem
 {
 
-    constructor(director, duration)
+    constructor(id,title,isAvailable,director, duration,priceperday)
     {
+        super(id,title,isAvailable);
         this.director = director;
         this.duration = duration;
+        this.priceperday = priceperday;
     }
 }
 
 // Child Class 3
 class Magazine extends LibraryItem
 {
-    constructor(issueNumber, publisher)
+    constructor(id,title,isAvailable,issueNumber, publisher)
     {
+        super(id,title,isAvailable);
         this.issueNumber = issueNumber;
         this.publisher = publisher;
     }
 }
 
 //Step 3: Instantiate Objects
-const book = new LibraryItem (2,"Aesop Fables",true);
+const book = new Book (2,"Aesop Fables",true);
 book.author = "Unknown";
 book.genre = "Moral Stories";
 
-const dvd = new LibraryItem(32,"Taken",true);
+const dvd = new DVD(32,"Taken",true,0.50);
 dvd.director = "Pierre Morel";
 dvd.duration = 120;
 
-const magazine = new LibraryItem(22,"Harpers Bazaar",false);
+const magazine = new Magazine(22,"Harpers Bazaar",false);
 magazine.publisher = "Hearst Corporation";
 magazine.issueNumber = 433;
 
@@ -87,3 +103,6 @@ console.log(`
     ${dvd.title}                    ${dvd.isAvailable?  'Available':'Checked Out'}
     ${magazine.title}           ${magazine.isAvailable? 'Available':'Checked Out'}
     `);
+
+// Test Unique methods
+console.log(book.fetchBookList());
